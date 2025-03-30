@@ -7,12 +7,30 @@
     <link rel="icon" type="image/png" href="./img/insta-fav.ico">
     <title>Instagram</title>
     <style>
-        .error-message {
-            color: rgb(237, 73, 86);
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px; /* Increased top padding for space from the top */
+        }
+        .panel.login {
+            padding: 40px 30px;
+            max-width: 350px;
+            width: 100%;
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            box-sizing: border-box;
+        }
+        .panel.login h1 img {
+            max-width: 175px;
+            height: auto;
         }
         .separator {
             width: 100%;
@@ -21,13 +39,57 @@
         .separator span {
             flex: 1;
             height: 1px;
-            background-color: #dbdbdb; /* Instagram's light gray */
+            background-color: #dbdbdb;
         }
         .separator .or {
             margin: 0 18px;
-            color: #8e8e8e; /* Instagram's gray text */
+            color: #8e8e8e;
             font-size: 13px;
             font-weight: 600;
+        }
+        .error-message {
+            color: rgb(237, 73, 86);
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        .panel.register {
+            margin-top: 10px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+        }
+        .app-download {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .app-download img {
+            margin: 0 5px;
+        }
+        footer {
+            margin-top: 40px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        footer ul.flex.flex-wrap.justify-content-center {
+            list-style: none;
+            padding: 20px 0; /* Add padding around the list */
+            margin: 20px 0; /* Add margin above and below */
+        }
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        footer ul li a {
+            color: #00376b;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        footer .copyright {
+            color: #8e8e8e;
+            font-size: 12px;
         }
     </style>
 </head>
